@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: myant-backend
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2GB
+      max-request-size: 2GB
+      file-size-threshold: 2KB
+  datasource:
+    # 容器内互通：直接用服务名 proj2-mysql
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/myant_app?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+
+  # 容器内 Redis 互通
+  data:
+    redis:
+      port: 6379
+      host: ${REDIS_HOST:localhost}
+      password: ${REDIS_PASSWORD:}
+      database: 0
+      timeout: 5000
+
+sa-token:
+  token-name: satoken
+  is-log: false
+  # Redis 配置（容器内）
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: 6379
+    password: ${REDIS_PASSWORD:}
+
+myant:
+  captcha:
+    enabled: true
+    length: 6
+    width: 180
+    height: 60
+    expire-seconds: 300
+    line-count: 8
+    dot-count: 30
+    font-size: 32
+    font-name: SansSerif
+
+sky:
+  alioss:
+    endpoint: ${ALIOSS_ENDPOINT:}
+    access-key-id: ${ALIOSS_ACCESS_KEY_ID:}
+    access-key-secret: ${ALIOSS_ACCESS_KEY_SECRET:}
+    bucket-name: ${ALIOSS_BUCKET_NAME:}
+
+tencent:
+  cos:
+    secret-id: ${TENCENT_COS_SECRET_ID:}
+    secret-key: ${TENCENT_COS_SECRET_KEY:}
+    region: ${TENCENT_COS_REGION:}
+    bucket-name: ${TENCENT_COS_BUCKET_NAME:}
+    domain: ${TENCENT_COS_DOMAIN:}

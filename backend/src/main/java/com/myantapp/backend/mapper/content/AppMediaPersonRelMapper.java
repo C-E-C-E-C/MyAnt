@@ -1,0 +1,9 @@
+package com.myantapp.backend.mapper.content;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.myantapp.backend.entity.content.AppMediaPersonRel;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface AppMediaPersonRelMapper extends BaseMapper<AppMediaPersonRel> {
+}
